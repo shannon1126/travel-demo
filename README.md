@@ -1,162 +1,136 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelLink AI - PDF 轉網頁 Demo</title>
+    <title>ココロココ - Hero Section</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
-        body { font-family: 'Noto Sans TC', sans-serif; }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .iphone-x {
-            width: 375px;
-            height: 812px;
-            border: 8px solid #1a1a1a;
-            border-radius: 40px;
-            position: relative;
-            background: white;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-green': '#2fa84b',
+                        'bg-gray': '#fafafa',
+                        'text-main': '#333333',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        serif: ['"Noto Serif JP"', 'serif'],
+                    }
+                }
+            }
         }
+    </script>
+    <style>
+        body { background-color: #fafafa; color: #333333; }
+        /* 左側垂直文字特效 */
+        .vertical-text { writing-mode: vertical-rl; text-orientation: mixed; }
     </style>
 </head>
-<body class="bg-slate-100 min-h-screen">
+<body class="font-sans antialiased pb-20">
 
-    <header class="bg-white border-b p-4 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="bg-blue-600 p-2 rounded-lg text-white">
-                    <i class="fas fa-magic"></i>
-                </div>
-                <h1 class="text-xl font-bold text-slate-800">TravelLink AI <span class="text-sm font-normal text-slate-400">v1.0 Demo</span></h1>
-            </div>
-            <div class="flex gap-3">
-                <button class="text-slate-500 hover:text-slate-800 px-3">保存草稿</button>
-                <button class="bg-blue-600 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-700 transition">發佈網頁</button>
+    <header class="max-w-[1400px] mx-auto px-6 py-6 flex justify-between items-center">
+        <div class="text-3xl font-bold tracking-widest flex items-center gap-1">
+            ココ<span class="w-6 h-6 border-4 border-brand-green rounded-sm block inline-block"></span>ココ
+        </div>
+        
+        <div class="hidden lg:flex items-center bg-white rounded-full shadow-sm pr-6 border border-gray-100">
+            <button class="bg-brand-green text-white px-6 py-3 rounded-full font-bold text-sm mr-4 hover:bg-green-700 transition">
+                記事検索
+            </button>
+            <div class="flex gap-4 text-sm font-medium text-gray-700">
+                <a href="#" class="hover:text-brand-green">▤ 都道府県</a> <span class="text-gray-300">|</span>
+                <a href="#" class="hover:text-brand-green">▤ テーマ</a> <span class="text-gray-300">|</span>
+                <a href="#" class="hover:text-brand-green">▤ 地図</a> <span class="text-gray-300">|</span>
+                <a href="#" class="hover:text-brand-green">▤ キーワード</a>
             </div>
         </div>
+
+        <button class="bg-brand-green text-white w-16 h-16 rounded-full flex flex-col items-center justify-center shadow-md hover:scale-105 transition">
+            <span class="block w-6 h-[2px] bg-white mb-1"></span>
+            <span class="block w-6 h-[2px] bg-white mb-1"></span>
+            <span class="text-[10px] font-bold mt-1">MENU</span>
+        </button>
     </header>
 
-    <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <main class="max-w-[1400px] mx-auto px-6 mt-8 flex flex-col lg:flex-row gap-12 relative">
         
-        <div class="lg:col-span-7 space-y-6">
-            <div class="bg-white p-8 rounded-2xl shadow-sm">
-                <h2 class="text-lg font-bold mb-6 text-slate-800 border-l-4 border-blue-600 pl-3">第一區塊：行程基礎資訊</h2>
+        <div class="hidden xl:block absolute left-0 top-20">
+            <div class="bg-gray-100 text-brand-green py-8 px-2 rounded-full vertical-text text-sm font-bold tracking-widest">
+                人と風土の物語を編む
+            </div>
+        </div>
+
+        <section class="lg:w-3/5 xl:ml-16">
+            <div class="relative group cursor-pointer">
+                <div class="overflow-hidden rounded-[2.5rem] shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1542640244-7e672d6cb466?auto=format&fit=crop&q=80&w=1200" alt="五ヶ瀬町" class="w-full h-[400px] object-cover transition duration-500 group-hover:scale-105">
+                </div>
                 
-                <div class="mb-8 border-2 border-dashed border-blue-200 bg-blue-50/50 rounded-xl p-10 text-center">
-                    <i class="fas fa-file-pdf text-4xl text-blue-400 mb-4"></i>
-                    <p class="text-blue-700 font-medium">已成功解析 PDF：<span class="underline">日本長野冬季行程.pdf</span></p>
-                    <p class="text-xs text-slate-400 mt-2">AI 已自動完成 85% 的資料填寫</p>
+                <div class="absolute -top-4 right-8 bg-white text-gray-800 font-bold px-6 py-3 rounded-2xl shadow-md text-lg">
+                    宮崎
                 </div>
-
-                <div class="grid gap-4">
-                    <div>
-                        <label class="text-sm text-slate-500 mb-1 block">行程標題</label>
-                        <input type="text" class="w-full border-slate-200 border p-3 rounded-lg" value="日本長野親子客製化冬日夢幻之旅｜和紙、料理、滑雪全體驗">
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-sm text-slate-500 mb-1 block">出團日期</label>
-                            <input type="text" class="w-full border-slate-200 border p-3 rounded-lg" value="2026/02/03">
-                        </div>
-                        <div>
-                            <label class="text-sm text-slate-500 mb-1 block">行程天數</label>
-                            <input type="text" class="w-full border-slate-200 border p-3 rounded-lg" value="7天">
-                        </div>
-                    </div>
+                
+                <div class="absolute bottom-10 left-10 text-white drop-shadow-lg">
+                    <h2 class="text-4xl font-bold leading-snug">小さく始めて、<br>大きく咲かせる<br>五ヶ瀬町</h2>
                 </div>
             </div>
 
-            <div class="bg-white p-8 rounded-2xl shadow-sm">
-                <h2 class="text-lg font-bold mb-6 text-slate-800 border-l-4 border-orange-500 pl-3">第二區塊：費用與促銷</h2>
-                <div class="space-y-4">
-                    <div class="bg-orange-50 p-4 rounded-xl border border-orange-100">
-                        <label class="text-sm text-orange-700 font-bold mb-1 block">業務推薦：限時優惠價</label>
-                        <input type="text" class="w-full border-orange-200 border p-3 rounded-lg text-lg font-bold text-orange-600" value="NT$ 88,000 起">
+            <div class="mt-6 px-2">
+                <div class="text-sm text-brand-green font-medium mb-3">
+                    2024年9月17日 <span class="text-gray-300 mx-2">|</span> <span class="text-gray-600">甲斐かおり</span>
+                </div>
+                <h3 class="text-2xl font-serif font-bold text-gray-800 mb-6 hover:text-brand-green transition cursor-pointer">
+                    【風土をめぐる旅】小さく始めて、大きく咲かせる　五ヶ瀬町
+                </h3>
+                
+                <div class="flex justify-between items-center border-t border-gray-200 pt-4">
+                    <div class="flex gap-2">
+                        <span class="bg-green-100 text-brand-green text-xs px-3 py-1.5 rounded text-sm font-medium">伝統をつなぐ</span>
+                        <span class="bg-green-100 text-brand-green text-xs px-3 py-1.5 rounded text-sm font-medium">農林漁業</span>
+                        <span class="bg-green-100 text-brand-green text-xs px-3 py-1.5 rounded text-sm font-medium">里山暮らし</span>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-sm text-slate-500 mb-1 block">費用包含 (AI 自動辨識)</label>
-                            <textarea class="w-full border-slate-200 border p-3 rounded-lg text-xs" rows="3">全程舒適專車、和紙手作體驗、北山料理教室、三晚星野飯店</textarea>
-                        </div>
-                        <div>
-                            <label class="text-sm text-slate-500 mb-1 block">費用不含</label>
-                            <textarea class="w-full border-slate-200 border p-3 rounded-lg text-xs" rows="3">個人消費、部分午餐、滑雪裝備租借</textarea>
-                        </div>
+                    <div class="text-sm font-bold text-gray-800">
+                        連載: 風土をめぐる旅
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="lg:col-span-5 flex justify-center items-start pt-4">
-            <div class="sticky top-24">
-                <p class="text-center text-sm text-slate-400 mb-4 italic"><i class="fas fa-mobile-alt mr-2"></i> 客人看到的樣子 (手機版預覽)</p>
-                <div class="iphone-x">
-                    <div class="h-full overflow-y-auto scrollbar-hide">
-                        <div class="h-56 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1483110322179-de6801981282?q=80&w=800&auto=format&fit=crop');">
-                            <div class="h-full w-full bg-gradient-to-t from-black/80 to-transparent flex items-end p-5">
-                                <div>
-                                    <span class="bg-orange-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">精選推薦</span>
-                                    <h3 class="text-white font-bold text-lg mt-1 leading-tight">日本長野親子客製化冬日夢幻之旅</h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-5 border-b">
-                            <div class="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-                                <div class="flex-shrink-0 text-center">
-                                    <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-1">
-                                        <i class="fas fa-car text-blue-500 text-xs"></i>
-                                    </div>
-                                    <span class="text-[10px] text-slate-500">專車接送</span>
-                                </div>
-                                <div class="flex-shrink-0 text-center">
-                                    <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center mb-1">
-                                        <i class="fas fa-utensils text-green-500 text-xs"></i>
-                                    </div>
-                                    <span class="text-[10px] text-slate-500">道地料理</span>
-                                </div>
-                                <div class="flex-shrink-0 text-center">
-                                    <div class="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center mb-1">
-                                        <i class="fas fa-home text-purple-500 text-xs"></i>
-                                    </div>
-                                    <span class="text-[10px] text-slate-500">星野飯店</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-5">
-                            <h4 class="font-bold text-slate-800 text-sm mb-4">行程內容</h4>
-                            <div class="space-y-6 border-l-2 border-slate-100 ml-2 pl-4">
-                                <div class="relative">
-                                    <div class="absolute -left-[25px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-white"></div>
-                                    <p class="text-blue-600 font-bold text-[10px]">DAY 01</p>
-                                    <p class="font-bold text-xs text-slate-700">抵達成田機場 - 專車前往長野</p>
-                                </div>
-                                <div class="relative">
-                                    <div class="absolute -left-[25px] top-0 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></div>
-                                    <p class="text-slate-400 font-bold text-[10px]">DAY 02</p>
-                                    <p class="font-bold text-xs text-slate-700">松本城巡禮 - 蕎麥麵手作</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-5 bg-slate-50">
-                            <div class="bg-white p-4 rounded-xl shadow-sm border border-orange-100">
-                                <p class="text-[10px] text-slate-400">專屬優惠價</p>
-                                <p class="text-xl font-bold text-orange-600">NT$ 88,000 <span class="text-xs text-slate-400 font-normal">/人</span></p>
-                                <button class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg mt-3 text-sm shadow-lg shadow-blue-200">
-                                    立即詢問早鳥優惠
-                                </button>
-                                <p class="text-center text-[10px] text-slate-400 mt-3 italic text-xs">已有 12 人諮詢此行程</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <section class="lg:w-2/5 flex flex-col pt-4">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-serif font-bold leading-loose text-gray-800">
+                    人と風土の<br>
+                    <span class="border-b-4 border-brand-green pb-2">物語を編む</span>
+                </h1>
             </div>
-        </div>
+
+            <div class="flex justify-center mb-8">
+                <svg width="200" height="100" viewBox="0 0 200 100" fill="none" stroke="#333" stroke-width="2">
+                    <path d="M20,80 L80,30 L140,80 M60,50 L100,20 L180,80" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="65" y="45" width="30" height="35" fill="white"/>
+                    <rect x="120" y="50" width="40" height="30" fill="white"/>
+                </svg>
+            </div>
+
+            <div class="relative mt-auto px-4">
+                <button class="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 w-10 h-10 bg-white border-2 border-brand-green text-brand-green rounded-full flex items-center justify-center z-10 hover:bg-brand-green hover:text-white transition">
+                    ❮
+                </button>
+                
+                <div class="overflow-hidden rounded-3xl shadow-sm cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800" alt="田園風景" class="w-full h-[220px] object-cover hover:scale-105 transition duration-500">
+                </div>
+
+                <button class="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 w-10 h-10 bg-white border-2 border-brand-green text-brand-green rounded-full flex items-center justify-center z-10 hover:bg-brand-green hover:text-white transition">
+                    ❯
+                </button>
+            </div>
+        </section>
+
     </main>
+
 </body>
 </html>
